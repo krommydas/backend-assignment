@@ -8,6 +8,7 @@ use Zend\Expressive\Helper\BodyParams\BodyParamsMiddleware;
 
 require 'vendor/autoload.php';
 require 'dataService.php';
+require 'shipLocationFilters.php';
 
 $container = new Container();
 
@@ -27,7 +28,10 @@ $app->add(new BodyParamsMiddleware());
 
 $app->get('/backend-assignment/shipLocations', function (Request $request, Response $response) {
 	
-	$items = $this->get('dataService')->getShipLocations();
+	var $filters; 
+	parse_str($request->getUri(), $filters);
+	
+	$items = $this->get('dataService')->getShipLocations((ShipLocationFilters)$filters);
 	
     $payload = json_encode($items);
 

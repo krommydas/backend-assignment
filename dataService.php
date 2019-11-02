@@ -1,5 +1,7 @@
 <?php
 
+require 'shipLocationFilters.php';
+
 class DataService
 {
 	 function __construct($databaseSettings) { 
@@ -10,9 +12,11 @@ class DataService
 	private $MongoClient;
 	private $DatabaseCollection;
 	
-	public function getShipLocations()
+	public function getShipLocations(ShipLocationFilters $filters)
 	{
-		return $this->DatabaseCollection->shipLocations->find();
+		var $query = isset($filters) ? $filters->toMongoDBFilters() : '{}';
+		
+		return $this->DatabaseCollection->shipLocations->find($query);
 	}
 	
 	public function insertShipLocations($items)
