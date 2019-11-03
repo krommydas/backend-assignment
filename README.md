@@ -14,6 +14,15 @@ A slim framework based php implementation of the Vessels Track API. The implemen
 * Query (**GET**) the API at: *serverAddress:/backend-assignment/shipLocations/{queryParams}* (*json or csv returned content, use header *)
 * Update (**POST**) the API at: *serverAddress:/backend-assignment/shipLocations* (*with a json payload of items*)
 
+# TODO
+
+* Fully implement the Vessels Track API
+* Enchance exceptions middleware with more status codes
+* Refactor database query building process
+* Rearrange files and adjust routes to remove the API folder prefix
+* Rethink selected DI implementation and use
+* Tests (*Unit and e2e*)
+* Installation script (* possibly within docker environment *)
 
 
 # Vessels Tracks API
