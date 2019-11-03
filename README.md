@@ -1,3 +1,21 @@
+# Work In Progress
+
+A slim framework based php implementation of the Vessels Track API. The implementation is close to **90%** completed. There are some missing items like querying the API with a timestamp and supporting more media type responses.
+
+# Installation
+
+* An apache server (*this repo folder must be included in the public folder*)
+* A mongoDB installation (*a database: **BackendAssignment** with **requests**, ***shipLocations** collections have to exist *)
+* PHP version 7 (* with the mongoDB extention module *)
+* Composer
+
+# Supported Requests
+
+* Query (**GET**) the API at: *serverAddress:/backend-assignment/shipLocations/{queryParams}* (*json or csv returned content, use header *)
+* Update (**POST**) the API at: *serverAddress:/backend-assignment/shipLocations* (*with a json payload of items*)
+
+
+
 # Vessels Tracks API
 
 Your task is to create a **RESTful API** that serves vessel tracks from a raw vessel positions data-source.
