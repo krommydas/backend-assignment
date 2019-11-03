@@ -10,6 +10,7 @@ require 'vendor/autoload.php';
 require 'dataService.php';
 require 'shipLocationFilters.php';
 require 'requestTrackMiddleware.php';
+require 'responseFactory.php';
 
 $container = new Container();
 
@@ -27,20 +28,15 @@ $app->add(new RequestTrackMiddleware($container->get('dataService')));
 
 $app->add(new RKA\Middleware\IpAddress(false));
 
-$app->add(new BodyParamsMiddleware());
+$app->addErrorMiddleware(false, true, true);
 
 $app->get('/backend-assignment/shipLocations', function (Request $request, Response $response) {
 	
 	$itemCriteria = new ShipLocationFilters( $request->getQueryParams());
 	
 	$items = $this->get('dataService')->getShipLocations($itemCriteria);
-	
-    $payload = json_encode($items);
 
-    $response->getBody()->write($payload);
-    return $response
-          ->withHeader('Content-Type', 'application/json')
-          ->withStatus(200);
+    return (new ResponseFactory($request, $response))->SerializeData($items);
 });
 
 $app->post('/backend-assignment/shipLocations', function (Request $request, Response $response) {
@@ -49,7 +45,7 @@ $app->post('/backend-assignment/shipLocations', function (Request $request, Resp
 
     $this->get('dataService')->insertShipLocations($items);
 
-    return $response->withStatus(200);
+    return new Zend\Diactoros\Response\EmptyResponse();
 });
 
 
