@@ -4,6 +4,7 @@
         "zendframework/zend-diactoros": "^2.1",
         "mongodb/mongodb": "^1.5",
         "php-di/php-di": "^6.0",
-        "zendframework/zend-expressive-helpers": "^5.3"
+        "zendframework/zend-expressive-helpers": "^5.3",
+        "akrabat/ip-address-middleware": "^1.0"
     }
 }
